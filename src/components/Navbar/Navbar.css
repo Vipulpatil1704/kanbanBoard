@@ -1,0 +1,30 @@
+.navbar{
+    display:flex;
+    position: relative;
+    width:100%;
+    box-shadow:0px 1px 10px 0px rgb(232, 231, 231);
+    font-size:16px;
+    padding:var(--content-padding);
+}
+.display-button{
+    padding:0.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.25em;
+}
+.sorting-table{
+    display: flex;
+    flex-direction: column;
+    row-gap:1em;
+    position:absolute;
+    left:0;
+    top:100%;
+    padding:1em;
+    background-color:white;
+}
+.sorting-table > div{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1em;
+}

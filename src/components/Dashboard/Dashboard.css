@@ -1,0 +1,42 @@
+.dashboard-container{
+    display: flex;
+    column-gap:2em;
+    justify-content: space-between;
+    padding:var(--content-padding);
+    margin-top:2em;
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+.dashboard :first-child{
+    display: flex;
+    justify-content: space-between;
+}
+.rightView{
+    display: flex;
+    align-items: center;
+    column-gap:0.5em;
+}
+
+@media (max-width:1200px) {
+    .dashboard{
+        flex-basis:45%;
+    }
+    .dashboard-container{
+        flex-wrap: wrap;
+        justify-content: space-around;
+        row-gap:2em;
+    }
+}
+@media (max-width:600px){
+    .dashboard{
+        flex-basis:100%;
+    }
+    .dashboard-container{
+        flex-wrap: wrap;
+        justify-content: space-around;
+        row-gap:2em;
+    }
+}

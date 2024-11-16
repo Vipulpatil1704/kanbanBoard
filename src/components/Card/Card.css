@@ -1,0 +1,34 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow:1px 1px 20px 1px rgb(230, 229, 229);
+    padding:1em;
+    margin:1em 0;
+    row-gap:0.5em;
+}
+.card-title{
+    display: flex;
+    column-gap:1em;
+    align-items: center;
+}
+.card-first-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-title{
+    display: flex;
+    column-gap:0.5em;
+}
+.logo{
+    border-radius:100%;
+    max-width:40px;
+    height:auto;
+}
+.priority-div{
+    display: flex;
+    align-items: center;
+    column-gap:0.75em;
+}
