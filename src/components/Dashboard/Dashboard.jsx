@@ -67,7 +67,7 @@ export default function Dashboard() {
                                 return <Card id={id} title={title} tag={tag} userId={userId} status={status} priority={priority} userAvatar={userAvatar} />
                             })
                         }
-                    </div>
+                    </div>  
                 </div>
             })}
 

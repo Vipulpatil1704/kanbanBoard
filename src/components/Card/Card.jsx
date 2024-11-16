@@ -19,7 +19,7 @@ export default function Card({id,title,tag,userId,status,priority,userAvatar}) {
         </div>
         <div className='card-title'>
           {localStorage.getItem('group')==='status' ? null : status==='Todo' ? <Todo/> : status==='In progress' ? <InProgress/> : status==='Backlog' ? <Backlog/> :null}
-          <div>{title}</div>
+          <div className='title'>{title}</div>  
         </div>
         <div className='priority-div'>
           {localStorage.getItem('group')==='priority'? null :<div>{priority===0 ? <NoPriority/>: priority===1 ? <LowPriority/> : priority===2 ? <MediumPriority/>: priority===3 ? <HighPriority/>: priority===4 ? <UrgentPriorityGrey/>:null}</div>}

@@ -1,14 +1,15 @@
 .dashboard-container{
     display: flex;
-    column-gap:2em;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding:var(--content-padding);
     margin-top:2em;
+    column-gap: 2em;
+    flex-wrap: wrap ;
 }
 .dashboard{
+    flex:1;
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
 }
 .dashboard :first-child{
     display: flex;
