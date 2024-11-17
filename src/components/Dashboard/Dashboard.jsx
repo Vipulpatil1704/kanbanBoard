@@ -16,20 +16,24 @@ export default function Dashboard() {
     const { selectedData, loading, message } = useSelector((state) => state.selectDataReducer);
     const {allUser}=useSelector((state)=>state.dataReducer);
     // console.log(allUser);
-    const status = localStorage.getItem('group');
+    const group = localStorage.getItem('group');
     const order = localStorage.getItem('ordervalue');
     return (
         //Showing priority items from left to right is a good practise as user need not to turn neck from entire left to right to see first priority list.
-        <div className={`dashboard-container ${status==='priority' ? 'reverseOrder' : ''}`}>
+        <div className={`dashboard-container ${group==='priority' ? 'reverseOrder' : ''}`}>
             {selectedData && selectedData.map((element, index) => {
-                
+
                 {/* console.log(element[index].title); */}
                 //additional part as in assets , images of users not given so I am using 3rd party api to generate Avatar for the users.
                 const name = element[index].title.split(" ");
                 let avatar = "";
-                if (status === 'user') {
+                let userAvail=true;
+                if (group === 'user') {
                         avatar = `https://ui-avatars.com/api/?name=${name[0]}+${name[1]? name[1]:''}`;
                         //it might be possible that user is not having last name so first check if it is not available then give empty string.
+                        let userName=allUser.find((item)=>item.name===element[index].title);
+                        userAvail=userName.available;
+                        console.log(userAvail);
                 }
 
                 return <div className="dashboard">
@@ -37,11 +41,11 @@ export default function Dashboard() {
 
                         <div className="left-view">
                             <div className="card-title">
-                                {status === 'status' ? element[index].title === 'Todo' ? <Todo /> : element[index].title === 'In progress' ? <InProgress /> : element[index].title === 'Backlog' ? <Backlog /> : element[index].title==='Done' ? <Done/> : element[index].title==='Cancelled' ? <Cancelled/> :null : null}
+                                {group === 'status' ? element[index].title === 'Todo' ? <Todo /> : element[index].title === 'In progress' ? <InProgress /> : element[index].title === 'Backlog' ? <Backlog /> : element[index].title==='Done' ? <Done/> : element[index].title==='Cancelled' ? <Cancelled/> :null : null}
                                 
 
-                                {status === 'priority' ? element[index].title === 'No Priority' ? <NoPriority /> : element[index].title === 'Low' ? <LowPriority /> : element[index].title === 'Medium' ? <MediumPriority /> : element[index].title === 'High' ? <HighPriority /> : element[index].title === 'Urgent' ? <UrgentPriority /> : null : null}
-                                {status==='user' ? <img className='avatar' src={avatar}/> :null}
+                                {group === 'priority' ? element[index].title === 'No Priority' ? <NoPriority /> : element[index].title === 'Low' ? <LowPriority /> : element[index].title === 'Medium' ? <MediumPriority /> : element[index].title === 'High' ? <HighPriority /> : element[index].title === 'Urgent' ? <UrgentPriority /> : null : null}
+                                {group==='user' ? <span className='avatar-container'><img className='avatar' src={avatar}/><div className={`availability ${userAvail===true ? 'available' :'not-available'}`}></div></span> :null}
                                 <span>{element[index].title}</span>
                                 <span>{element[index].value.length}</span>
                             </div>
@@ -65,9 +69,10 @@ export default function Dashboard() {
                                 const userId = element.userId;
                                 const status = element.status;
                                 const priority = element.priority;
-                                let userName=allUser.find((item)=>item.id===userId).name.split(" ");
-                                let userAvatar=`https://ui-avatars.com/api/?name=${userName[0]}+${userName[1] ? userName[1]:''}`
-                                return <Card id={id} title={title} tag={tag} userId={userId} status={status} priority={priority} userAvatar={userAvatar} />
+                                let userName=allUser.find((item)=>item.id===userId);
+                                let foundUser=userName.name.split(" ");
+                                let userAvatar=`https://ui-avatars.com/api/?name=${foundUser[0]}+${foundUser[1] ? foundUser[1]:''}`
+                                return <Card id={id} title={title} tag={tag} userId={userId} status={status} priority={priority} userAvatar={userAvatar} availability={userName.available} />
                             })
                         }
                     </div>  
