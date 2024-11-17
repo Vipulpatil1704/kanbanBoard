@@ -5,7 +5,9 @@
     box-shadow:0px 1px 10px 0px rgb(232, 231, 231);
     font-size:16px;
     padding:var(--content-padding);
+    background-color: white;
 }
+
 .display-button{
     padding:0.25em;
     display: flex;
@@ -18,7 +20,7 @@
     flex-direction: column;
     row-gap:1em;
     position:absolute;
-    left:0;
+    left:var(--content-padding);
     top:100%;
     padding:1em;
     background-color:white;

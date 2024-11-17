@@ -30,16 +30,16 @@ export default function Navbar() {
             {
                 display ? <div className='sorting-table'>
                     <div>
-                        <div>Grouping</div>
-                        <select name="group" id="" value={group} onChange={(e) => { setGroup(e.target.value) }}>
+                        <label htmlFor='group'>Grouping</label>
+                        <select name="group" id="group" value={group} onChange={(e) => { setGroup(e.target.value) }}>
                             <option value="status">Status</option>
                             <option value="user">User</option>
                             <option value="priority">Priority</option>
                         </select>
                     </div>
                     <div>
-                        <div>Ordering</div>
-                        <select name="order" id="" value={orderValue} onChange={(e) => { setOrderValue(e.target.value) }}>
+                        <label htmlFor='order'>Ordering</label>
+                        <select name="order" id="order" value={orderValue} onChange={(e) => { setOrderValue(e.target.value) }}>
                             <option value="priority">Priority</option>
                             <option value="title">Title</option>
                         </select>
