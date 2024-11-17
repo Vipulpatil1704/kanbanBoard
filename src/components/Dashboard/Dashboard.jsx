@@ -18,18 +18,30 @@ export default function Dashboard() {
     // console.log(allUser);
     const group = localStorage.getItem('group');
     const order = localStorage.getItem('ordervalue');
+    function randomNumber(num){
+        return Math.floor(Math.random()*num);
+    }
+    function generateRandomBackground(){
+        let hex=[0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
+        let res="";
+        for(let i=0;i<6;i++){
+            res+=hex[randomNumber(hex.length)];
+        }
+        return res;
+    }
+    // console.log(generateRandomBackground());
     return (
         //Showing priority items from left to right is a good practise as user need not to turn neck from entire left to right to see first priority list.
         <div className={`dashboard-container ${group==='priority' ? 'reverseOrder' : ''}`}>
             {selectedData && selectedData.map((element, index) => {
-
+                let ranBack=generateRandomBackground();
                 {/* console.log(element[index].title); */}
                 //additional part as in assets , images of users not given so I am using 3rd party api to generate Avatar for the users.
                 const name = element[index].title.split(" ");
                 let avatar = "";
                 let userAvail=true;
                 if (group === 'user') {
-                        avatar = `https://ui-avatars.com/api/?name=${name[0]}+${name[1]? name[1]:''}`;
+                        avatar = `https://ui-avatars.com/api/?name=${name[0]}+${name[1]? name[1]:''}&background=${ranBack}&color=ffffff`;
                         //it might be possible that user is not having last name so first check if it is not available then give empty string.
                         let userName=allUser.find((item)=>item.name===element[index].title);
                         userAvail=userName.available;
@@ -71,7 +83,8 @@ export default function Dashboard() {
                                 const priority = element.priority;
                                 let userName=allUser.find((item)=>item.id===userId);
                                 let foundUser=userName.name.split(" ");
-                                let userAvatar=`https://ui-avatars.com/api/?name=${foundUser[0]}+${foundUser[1] ? foundUser[1]:''}`
+                                let ranBack=generateRandomBackground();
+                                let userAvatar=`https://ui-avatars.com/api/?name=${foundUser[0]}+${foundUser[1] ? foundUser[1]:''}&background=${ranBack}&color=ffffff`
                                 return <Card id={id} title={title} tag={tag} userId={userId} status={status} priority={priority} userAvatar={userAvatar} availability={userName.available} />
                             })
                         }
