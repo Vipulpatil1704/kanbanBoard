@@ -16,11 +16,13 @@ export default function Dashboard() {
     const { selectedData, loading, message } = useSelector((state) => state.selectDataReducer);
     const {allUser}=useSelector((state)=>state.dataReducer);
     // console.log(allUser);
+    const status = localStorage.getItem('group');
+    const order = localStorage.getItem('ordervalue');
     return (
-        <div className='dashboard-container'>
+        //Showing priority items from left to right is a good practise as user need not to turn neck from entire left to right to see first priority list.
+        <div className={`dashboard-container ${status==='priority' ? 'reverseOrder' : ''}`}>
             {selectedData && selectedData.map((element, index) => {
-                const status = localStorage.getItem('group');
-                const order = localStorage.getItem('ordervalue');
+                
                 {/* console.log(element[index].title); */}
                 //additional part as in assets , images of users not given so I am using 3rd party api to generate Avatar for the users.
                 const name = element[index].title.split(" ");

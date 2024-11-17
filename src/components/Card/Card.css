@@ -18,8 +18,9 @@
   display: -webkit-box !important;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2;
-  min-height:40px;
+  min-height:40px; 
 }
+
 .card-title span{
    padding-top:3px; 
 }
